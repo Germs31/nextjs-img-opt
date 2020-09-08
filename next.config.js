@@ -8,6 +8,9 @@ module.exports = withPlugins([
       inlineImageLimit: 8192,
       imagesFolder: 'images',
       imagesName: '[name]-[hash].[ext]',
+      imageTrace:{
+          alphaMax: 100,
+      },
       handleImages: ['jpeg', 'png', 'svg', 'webp', 'gif', 'jpg'],
       removeOriginalExtension: false,
       optimizeImages: true,
@@ -30,5 +33,18 @@ module.exports = withPlugins([
         preset: 'default',
         quality: 75,
       },
+      module: {
+        rules: [
+          {
+            test: /\.(gif|png|jpe?g)$/i,
+            use: [
+              {
+                loader: 'image-trace-loader'
+              }
+            ]
+          }
+        ]
+      }
     }],
+    
 ]);
